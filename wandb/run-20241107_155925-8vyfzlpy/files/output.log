@@ -1,0 +1,13 @@
+2024-11-07 15:59:26,301 - INFO - Loading meshes and parameters in batches...
+ 94%|███████████████████████████████████████████████████████████████████████████▉     | 15/16 [00:40<00:02,  2.70s/it]2024-11-07 16:00:07,001 - ERROR - Error loading mesh 10431: decode() argument 'encoding' must be str, not None
+2024-11-07 16:00:07,002 - WARNING - Skipping ID 10431.0: decode() argument 'encoding' must be str, not None
+100%|█████████████████████████████████████████████████████████████████████████████████| 16/16 [00:40<00:00,  2.54s/it]
+2024-11-07 16:00:07,301 - ERROR - Error during training: name 'IncrementalPCA' is not defined
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/paramodel/model2.py", line 493, in <module>
+    main()
+  File "/home/blvksh33p/Documents/paramodel/model2.py", line 478, in main
+    train_metrics, val_metrics = model.train_model(wandb_config)
+  File "/home/blvksh33p/Documents/paramodel/model2.py", line 318, in train_model
+    self.pca_model = IncrementalPCA(n_components=wandb_config['n_components'])
+NameError: name 'IncrementalPCA' is not defined

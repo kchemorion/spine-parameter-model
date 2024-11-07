@@ -1,0 +1,19 @@
+{"time":"2024-11-07T15:37:35.009316847+02:00","level":"INFO","msg":"using version","core version":"0.18.6"}
+{"time":"2024-11-07T15:37:35.009327667+02:00","level":"INFO","msg":"created symlink","path":"/home/blvksh33p/Documents/paramodel/wandb/run-20241107_153735-uozu2qk1/logs/debug-core.log"}
+{"time":"2024-11-07T15:37:35.113140126+02:00","level":"INFO","msg":"created new stream","id":"uozu2qk1"}
+{"time":"2024-11-07T15:37:35.113170134+02:00","level":"INFO","msg":"stream: started","id":"uozu2qk1"}
+{"time":"2024-11-07T15:37:35.113429731+02:00","level":"INFO","msg":"sender: started","stream_id":"uozu2qk1"}
+{"time":"2024-11-07T15:37:35.113390677+02:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"uozu2qk1"}}
+{"time":"2024-11-07T15:37:35.11343409+02:00","level":"INFO","msg":"handler: started","stream_id":{"value":"uozu2qk1"}}
+{"time":"2024-11-07T15:37:35.631225457+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-11-07T15:37:36.150374778+02:00","level":"INFO","msg":"stream: closing","id":"uozu2qk1"}
+{"time":"2024-11-07T15:37:36.150635157+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-11-07T15:37:36.15125186+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-11-07T15:37:36.348654469+02:00","level":"WARN","msg":"No job ingredients found, not creating job artifact"}
+{"time":"2024-11-07T15:37:36.348672453+02:00","level":"WARN","msg":"No source type found, not creating job artifact"}
+{"time":"2024-11-07T15:37:36.348677553+02:00","level":"INFO","msg":"sender: sendDefer: no job artifact to save"}
+{"time":"2024-11-07T15:37:36.965572802+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-11-07T15:37:37.352677055+02:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"uozu2qk1"}}
+{"time":"2024-11-07T15:37:37.352707573+02:00","level":"INFO","msg":"sender: closed","stream_id":"uozu2qk1"}
+{"time":"2024-11-07T15:37:37.35270063+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"uozu2qk1"}}
+{"time":"2024-11-07T15:37:37.352758792+02:00","level":"INFO","msg":"stream: closed","id":"uozu2qk1"}

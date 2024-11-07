@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spine Parametric Model</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-foreground: #ffffff;
+            --background: #ffffff;
+            --card: #ffffff;
+            --card-foreground: #020817;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --border: #e2e8f0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--card-foreground);
+            background-color: var(--background);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .card {
+            background-color: var(--card);
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+        .parameter {
+            margin-bottom: 1.5rem;
+        }
+        .parameter label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .parameter-inputs {
+            display: flex;
+            align-items: center;
+        }
+        .parameter-inputs input[type="range"] {
+            flex-grow: 1;
+            margin-right: 1rem;
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: var(--muted);
+            outline: none;
+            border-radius: 3px;
+        }
+        .parameter-inputs input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .parameter-inputs input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .parameter-inputs input[type="number"] {
+            width: 80px;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        #spine-model {
+            width: 100%;
+            height: 400px;
+            background-color: var(--muted);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spine Parametric Model</h1>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>Spine Parameters</h2>
+                <p>Adjust parameters to update the spine model in real-time</p>
+                <div id="parameters"></div>
+            </div>
+            
+            <div class="card">
+                <h2>Spine Visualization</h2>
+                <p>3D visualization of the spine model</p>
+                <div id="spine-model"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script>
+        const parameters = {
+            PI: 45.0,
+            PT: 20.0,
+            LL: -40.0,
+            GT: 30.0,
+            LDI: 100.0,
+            TPA: 25.0,
+            cobb_angle: 15.0
+        };
+
+        const parameterContainer = document.getElementById('parameters');
+        let scene, camera, renderer, spineGeometry, spineMesh, controls;
+
+        function createParameterInputs() {
+            for (const [param, value] of Object.entries(parameters)) {
+                const paramDiv = document.createElement('div');
+                paramDiv.className = 'parameter';
+                
+                const label = document.createElement('label');
+                label.textContent = param;
+                label.htmlFor = param;
+                
+                const inputsDiv = document.createElement('div');
+                inputsDiv.className = 'parameter-inputs';
+                
+                const slider = document.createElement('input');
+                slider.type = 'range';
+                slider.id = param;
+                slider.min = -100;
+                slider.max = 100;
+                slider.step = 0.1;
+                slider.value = value;
+                
+                const numberInput = document.createElement('input');
+                numberInput.type = 'number';
+                numberInput.value = value;
+                numberInput.step = 0.1;
+                
+                inputsDiv.appendChild(slider);
+                inputsDiv.appendChild(numberInput);
+                
+                paramDiv.appendChild(label);
+                paramDiv.appendChild(inputsDiv);
+                
+                parameterContainer.appendChild(paramDiv);
+                
+                slider.addEventListener('input', () => updateParameter(param, parseFloat(slider.value)));
+                numberInput.addEventListener('change', () => updateParameter(param, parseFloat(numberInput.value)));
+            }
+        }
+
+        function updateParameter(param, value) {
+            parameters[param] = value;
+            document.getElementById(param).value = value;
+            document.querySelector(`input[type="number"][value="${parameters[param]}"]`).value = value;
+            updateSpineModel();
+        }
+
+        function initThreeJS() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            
+            const container = document.getElementById('spine-model');
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+            pointLight.position.set(10, 10, 10);
+            scene.add(pointLight);
+            
+            spineGeometry = new THREE.BufferGeometry();
+            const material = new THREE.MeshPhongMaterial({ color: 0x3b82f6, shininess: 100 });
+            spineMesh = new THREE.Mesh(spineGeometry, material);
+            scene.add(spineMesh);
+            
+            camera.position.z = 10;
+            
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.25;
+            controls.screenSpacePanning = false;
+            controls.maxPolarAngle = Math.PI / 2;
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                TWEEN.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('spine-model');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function updateSpineModel() {
+            const newVertices = [];
+            for (let i = 0; i < 100; i++) {
+                newVertices.push(
+                    Math.sin(i / 10) * parameters.PI / 10,
+                    i * parameters.LL / 1000,
+                    Math.cos(i / 10) * parameters.GT / 10
+                );
+            }
+            
+            const currentVertices = spineGeometry.attributes.position.array;
+            
+            new TWEEN.Tween(currentVertices)
+                .to(newVertices, 500)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .onUpdate(() => {
+                    spineGeometry.attributes.position.needsUpdate = true;
+                    spineGeometry.computeVertexNormals();
+                })
+                .start();
+        }
+
+        createParameterInputs();
+        initThreeJS();
+        updateSpineModel();
+    </script>
+</body>
+</html>

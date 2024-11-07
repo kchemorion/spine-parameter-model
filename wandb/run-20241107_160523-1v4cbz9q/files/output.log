@@ -1,0 +1,15 @@
+2024-11-07 16:05:26,566 - INFO - Loading 483 meshes in batches of 64...
+Loading meshes:  88%|████████████████████████████▉    | 7/8 [00:37<00:05,  5.36s/it]2024-11-07 16:06:06,914 - ERROR - Error loading mesh 10431: decode() argument 'encoding' must be str, not None
+2024-11-07 16:06:06,914 - WARNING - Skipping ID 10431.0: decode() argument 'encoding' must be str, not None
+Loading meshes: 100%|█████████████████████████████████| 8/8 [00:40<00:00,  5.04s/it]
+2024-11-07 16:06:06,914 - INFO - Successfully loaded 482 meshes
+2024-11-07 16:06:07,180 - INFO - Training PCA model...
+2024-11-07 16:06:08,809 - INFO - Training parameter mappings...
+2024-11-07 16:06:09,311 - INFO - Logging metrics...
+2024-11-07 16:06:09,625 - INFO - Model saved to trained_models/20241107_160609/spine_model.joblib
+
+Training Results:
+Train Reconstruction Error: 0.3782
+Validation Reconstruction Error: 0.4956
+Train R2 Score: 0.7682
+Validation R2 Score: 0.7876

@@ -1,0 +1,4 @@
+2024-11-07 15:55:58,267 - INFO - Loading meshes and parameters...
+ 99%|█████████████████████████████████████████████████████████████████████████████▊ | 476/483 [00:07<00:00, 61.45it/s]2024-11-07 15:56:05,984 - ERROR - Error loading mesh 10431: decode() argument 'encoding' must be str, not None
+2024-11-07 15:56:05,984 - WARNING - Skipping ID 10431.0: decode() argument 'encoding' must be str, not None
+100%|███████████████████████████████████████████████████████████████████████████████| 483/483 [00:07<00:00, 62.59it/s]

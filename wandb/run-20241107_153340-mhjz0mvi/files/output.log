@@ -1,0 +1,10 @@
+Loading meshes and parameters...
+Error in main: 'SpineParametricModel' object has no attribute 'load_training_data'
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/paramodel/parametric_model.py", line 286, in <module>
+    main()
+  File "/home/blvksh33p/Documents/paramodel/parametric_model.py", line 269, in main
+    reconstruction_error = model.train_model(
+  File "/home/blvksh33p/Documents/paramodel/parametric_model.py", line 178, in train_model
+    X, Y = self.load_training_data()
+AttributeError: 'SpineParametricModel' object has no attribute 'load_training_data'

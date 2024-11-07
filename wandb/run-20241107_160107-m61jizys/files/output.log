@@ -1,0 +1,18 @@
+2024-11-07 16:01:08,333 - INFO - Loading meshes and parameters in batches...
+ 94%|███████████████████████████████████████████████████████████████████████████▉     | 15/16 [00:40<00:02,  2.63s/it]2024-11-07 16:01:49,094 - ERROR - Error loading mesh 10431: decode() argument 'encoding' must be str, not None
+2024-11-07 16:01:49,095 - WARNING - Skipping ID 10431.0: decode() argument 'encoding' must be str, not None
+100%|█████████████████████████████████████████████████████████████████████████████████| 16/16 [00:40<00:00,  2.55s/it]
+PCA Training:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:05<00:00,  2.06it/s]
+2024-11-07 16:01:55,131 - ERROR - Error during training: n_components=5 must be less or equal to the batch number of samples 1.
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/paramodel/model2.py", line 494, in <module>
+    main()
+  File "/home/blvksh33p/Documents/paramodel/model2.py", line 479, in main
+    train_metrics, val_metrics = model.train_model(wandb_config)
+  File "/home/blvksh33p/Documents/paramodel/model2.py", line 327, in train_model
+    self.pca_model.partial_fit(X_train[i:batch_end])
+  File "/home/blvksh33p/Documents/paramodel/env/lib/python3.10/site-packages/sklearn/base.py", line 1473, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/blvksh33p/Documents/paramodel/env/lib/python3.10/site-packages/sklearn/decomposition/_incremental_pca.py", line 304, in partial_fit
+    raise ValueError(
+ValueError: n_components=5 must be less or equal to the batch number of samples 1.

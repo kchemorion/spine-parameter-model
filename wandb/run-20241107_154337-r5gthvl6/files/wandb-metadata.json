@@ -1,0 +1,39 @@
+{
+  "os": "Linux-6.8.0-47-generic-x86_64-with-glibc2.35",
+  "python": "3.10.12",
+  "startedAt": "2024-11-07T13:43:37.042220Z",
+  "program": "/home/blvksh33p/Documents/paramodel/parametric_model.py",
+  "codePath": "parametric_model.py",
+  "email": "kchemorion@gmail.com",
+  "root": "/home/blvksh33p/Documents/paramodel",
+  "host": "blvksh33p-Victus-by-HP-Laptop-16-e0xxx",
+  "username": "blvksh33p",
+  "executable": "/home/blvksh33p/Documents/paramodel/env/bin/python",
+  "codePathLocal": "parametric_model.py",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "502392610816",
+      "used": "245113917440"
+    }
+  },
+  "memory": {
+    "total": "16067624960"
+  },
+  "cpu": {
+    "count": 6,
+    "countLogical": 12
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "memoryTotal": "4294967296",
+      "cudaCores": 2048,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.2"
+}

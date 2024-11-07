@@ -1,0 +1,19 @@
+{"time":"2024-11-07T16:01:07.772226336+02:00","level":"INFO","msg":"using version","core version":"0.18.6"}
+{"time":"2024-11-07T16:01:07.772237277+02:00","level":"INFO","msg":"created symlink","path":"/home/blvksh33p/Documents/paramodel/wandb/run-20241107_160107-m61jizys/logs/debug-core.log"}
+{"time":"2024-11-07T16:01:07.876124601+02:00","level":"INFO","msg":"created new stream","id":"m61jizys"}
+{"time":"2024-11-07T16:01:07.876148768+02:00","level":"INFO","msg":"stream: started","id":"m61jizys"}
+{"time":"2024-11-07T16:01:07.876163356+02:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"m61jizys"}}
+{"time":"2024-11-07T16:01:07.876176821+02:00","level":"INFO","msg":"handler: started","stream_id":{"value":"m61jizys"}}
+{"time":"2024-11-07T16:01:07.87617631+02:00","level":"INFO","msg":"sender: started","stream_id":"m61jizys"}
+{"time":"2024-11-07T16:01:08.293070313+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-11-07T16:01:55.140941617+02:00","level":"INFO","msg":"stream: closing","id":"m61jizys"}
+{"time":"2024-11-07T16:01:55.140970693+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-11-07T16:01:55.143850471+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-11-07T16:01:55.494875731+02:00","level":"WARN","msg":"No job ingredients found, not creating job artifact"}
+{"time":"2024-11-07T16:01:55.494893936+02:00","level":"WARN","msg":"No source type found, not creating job artifact"}
+{"time":"2024-11-07T16:01:55.494900198+02:00","level":"INFO","msg":"sender: sendDefer: no job artifact to save"}
+{"time":"2024-11-07T16:01:56.11042533+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-11-07T16:01:56.525999099+02:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"m61jizys"}}
+{"time":"2024-11-07T16:01:56.526034246+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"m61jizys"}}
+{"time":"2024-11-07T16:01:56.526057831+02:00","level":"INFO","msg":"sender: closed","stream_id":"m61jizys"}
+{"time":"2024-11-07T16:01:56.526108037+02:00","level":"INFO","msg":"stream: closed","id":"m61jizys"}
